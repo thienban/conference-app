@@ -6,7 +6,7 @@ export default class SessionList {
   render(idView) {
     let template = "";
     talkSvc.findAllSessions().then(sessions => {
-      JSON.parse(sessions).forEach(sp => {
+      sessions.forEach(sp => {
         template += "<p>" + sp.title + "</p>";
       });
       document.getElementById(idView).innerHTML = template;

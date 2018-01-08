@@ -1,32 +1,32 @@
-const URL_SPEAKERS = "http://localhost:3000/speakers";
-const URL_SESSIONS = "http://localhost:3000/sessions";
-
-function xhr(url) {
-  return new Promise((resolve, reject) => {
-    const req = new XMLHttpRequest();
-    req.open("GET", url, true);
-    req.onreadystatechange = aEvt => {
-      if (req.readyState == 4) {
-        if (req.status == 200)
-          resolve(req.responseText); // corps de la réponse
-        else reject("Erreur pendant le chargement de la page");
-      }
-    };
-    req.send(null);
-  });
-}
-
 export default class TalkService {
+  constructor(){
+    this.URL_SPEAKERS = "http://localhost:3000/speakers"
+    this.URL_SESSIONS = "http://localhost:3000/sessions"
+  }
+  xhr(url) {
+    return new Promise((resolve, reject) => {
+      const req = new XMLHttpRequest();
+      req.open("GET", url, true);
+      req.onreadystatechange = aEvt => {
+        if (req.readyState == 4) {
+          if (req.status == 200)
+            resolve(JSON.parse(req.responseText)); // corps de la réponse
+          else reject("Erreur pendant le chargement de la page");
+        }
+      };
+      req.send(null);
+    });
+  }
   findAllSpeakers() {
-    return xhr(URL_SPEAKERS);
+    return this.xhr(this.URL_SPEAKERS);
   }
   findAllSessions() {
-    return xhw(URL_SESSIONS);
+    return this.xhr(this.URL_SESSIONS);
   }
-  findSpeaker() {
-    return xhw(URL_SPEAKER);
+  findSpeakerById(id) {
+    return this.xhr(this.URL_SPEAKERS+"/"+id);
   }
-  findSession() {
-    return xhw(URL_SESSION);
+  findSessionbyId(id) {
+    return this.xhr(this.URL_SESSIONS+"/"+id);
   }
 }
