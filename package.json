@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dist": "webpack",
-    "start": "webpack-dev-server"
+    "start": "concurrently \"json-server db.json --watch\" \"webpack-dev-server\""
   },
   "repository": {
     "type": "git",
@@ -20,8 +20,18 @@
   },
   "homepage": "https://github.com/thienban/conference-app#readme",
   "devDependencies": {
+    "concurrently": "^3.5.1",
+    "css-loader": "^0.28.8",
+    "file-loader": "^1.1.6",
+    "html-loader": "^0.5.4",
     "html-webpack-plugin": "^2.30.1",
+    "style-loader": "^0.19.1",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.10.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.0.0-beta.3",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.12.9"
   }
 }
